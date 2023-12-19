@@ -37,6 +37,7 @@ public class EmployeeController {
 
     // Build Reactive Get All Employees REST API
     @GetMapping
+    @ResponseStatus(value = HttpStatus.OK)
     public Flux<EmployeeDto> getEmployees(){
         Flux<Employee> employeeFlux = employeeService.getAllEmployees();
         return employeeFlux
@@ -46,6 +47,7 @@ public class EmployeeController {
 
     // Build Reactive Update Employee REST API
     @PutMapping("{id}")
+    @ResponseStatus(value = HttpStatus.OK)
     public Mono<EmployeeDto> updateEmployee(@RequestBody EmployeeDto employeeDto,@PathVariable("id") String employeeId){
         Employee employee = EmployeeMapper.mapToEmployee(employeeDto);
         Mono<Employee> savedEmployeeMono = employeeService.updateEmployee(employee, employeeId);
